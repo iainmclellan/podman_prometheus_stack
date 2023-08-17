@@ -4,19 +4,19 @@
 podman network create prometheus_network
 
 # Build Prometheus Container
-buildah bud -t my-prometheus-container ./prometheus
+buildah bud -t my-prometheus-container ./container_setup/prometheus
 
 # Build Alertmanager Container
-buildah bud -t my-alertmanager-container ./alertmanager
+buildah bud -t my-alertmanager-container ./container_setup/alertmanager
 
 # Build Grafana Container
-buildah bud -t my-grafana-container ./grafana
+buildah bud -t my-grafana-container ./container_setup/grafana
 
 # Build Traefik Container
-buildah bud -t my-traefik-container ./traefik
+buildah bud -t my-traefik-container ./container_setup/traefik
 
 # Build Kuma Uptime Container
-buildah bud -t my-kuma-uptime-container ./kuma-uptime
+buildah bud -t my-kuma-uptime-container ./container_setup/kuma-uptime
 
 # Run Traefik Container
 podman run -d --name=traefik --network=prometheus_network -p 80:80 -p 8080:8080 my-traefik-container

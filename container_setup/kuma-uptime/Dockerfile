@@ -1,3 +1,3 @@
 FROM docker.io/jamesberzan/kumauptime
 
-COPY config.yaml /path/to/config.yaml
+COPY ./container_setup/kuma-uptime/kuma-uptime.yaml /etc/kuma-uptime.yaml

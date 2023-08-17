@@ -1,3 +1,3 @@
 FROM docker.io/bitnami/prometheus
 
-COPY prometheus.yml /etc/prometheus/prometheus.yml
+COPY ./container_setup/prometheus/prometheus.yml /etc/prometheus/prometheus.yml

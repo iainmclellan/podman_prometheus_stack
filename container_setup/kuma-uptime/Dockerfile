@@ -1,3 +1,3 @@
-FROM docker.io/jamesberzan/kumauptime
+FROM docker.io/elestio/uptime-kuma
 
-COPY ./container_setup/kuma-uptime/kuma-uptime.yaml /etc/kuma-uptime.yaml
+COPY kuma-uptime.yaml /etc/kuma-uptime.yaml

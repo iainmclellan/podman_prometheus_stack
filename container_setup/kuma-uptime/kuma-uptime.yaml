@@ -1,0 +1,51 @@
+---
+app:
+  name: "Uptime Kuma"
+  url: "http://kuma-uptime.example.com"
+  theme: "default"
+
+auth:
+  jwt_secret: "your-jwt-secret"
+  jwt_expiration: 2592000
+
+cron_jobs:
+  fetch_services:
+    cronTime: "0 */5 * * * *"
+    timezone: "UTC"
+
+notifications:
+  enabled: true
+  transport: "smtp"
+  smtp:
+    host: "smtp.example.com"
+    port: 587
+    secure: false
+    auth:
+      user: "your-smtp-username"
+      pass: "your-smtp-password"
+    sender: "Uptime Kuma <noreply@example.com>"
+
+sites:
+  - name: "Example Website"
+    url: "http://www.bbc.com"
+    interval: 300
+    ping: true
+    keyword: "Example Domain - BBC"
+    check_certificate: true
+    uptime_threshold: 99.9
+    timeout: 15
+    retry: 3
+    alert: true
+    enabled: true
+    tag: "web_entry_point"
+
+  - name: "API Service"
+    url: "https://api.example.com"
+    interval: 120
+    ping: true
+    keyword: "API is operational"
+    uptime_threshold: 99.5
+    timeout: 10
+    retry: 2
+    alert: true
+    enabled: true

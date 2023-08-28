@@ -1,5 +1,7 @@
 FROM docker.io/bitnami/alertmanager
 
+USER nonroot
+
 RUN sudo apt-get update && apt-get upgrade
 
 COPY alert_manager.yaml /etc/alertmanager/alertmanager.yml

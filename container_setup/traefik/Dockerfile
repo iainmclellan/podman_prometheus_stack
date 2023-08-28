@@ -1,5 +1,7 @@
 FROM docker.io/traefik:v2.5
 
+USER nonroot
+
 RUN sudo apt-get update && apt-get upgrade
 
 # Configure Traefik here (entrypoints, middlewares, routers, etc.)

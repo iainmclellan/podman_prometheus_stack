@@ -1,5 +1,7 @@
 FROM docker.io/bitnami/node-exporter
 
+USER nonroot 
+
 RUN sudo apt-get update && apt-get upgrade 
 
 HEALTHCHECK  --interval=5m --timeout=3s \

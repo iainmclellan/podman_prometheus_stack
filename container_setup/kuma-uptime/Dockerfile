@@ -1,5 +1,7 @@
 FROM docker.io/elestio/uptime-kuma
 
+USER nonroot 
+
 RUN sudo apt-get update && apt-get upgrade
 
 COPY kuma-uptime.yaml /etc/kuma-uptime.yaml

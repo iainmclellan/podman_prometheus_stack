@@ -1,5 +1,7 @@
 FROM docker.io/gcr.io/cadvisor/cadvisor
 
+USER nonroot 
+
 RUN sudo apt-get update && apt-get upgrade 
 
 COPY cadvisor.yaml /etc/cadvisor/cadvisor.yml

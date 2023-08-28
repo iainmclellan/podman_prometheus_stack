@@ -1,5 +1,6 @@
 FROM docker.io/grafana/grafana
 
+USER nonroot
 
 RUN sudo apt-get update && apt-get upgrade
 

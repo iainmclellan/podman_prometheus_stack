@@ -22,7 +22,7 @@ jobs:
           docker build -t local-image:latest .
 
       - name: Run Trivy (image + config) and output SARIF
-        uses: aquasecurity/trivy-action@v0.32.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           scan-type: image
           image-ref: local-image:latest

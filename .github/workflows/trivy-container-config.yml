@@ -1,0 +1,39 @@
+name: Trivy Container Config Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+permissions:
+  contents: read
+  security-events: write   # required for SARIF upload
+
+jobs:
+  trivy-container-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build container image
+        run: |
+          docker build -f container_setup/grafana/Dockerfile -t local-image:latest .
+
+      - name: Run Trivy (image + config) and output SARIF
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          scan-type: image
+          image-ref: local-image:latest
+          scanners: 'vuln,config'
+          vuln-type: 'os,library'
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
+          format: 'sarif'                 # 👈 SARIF output
+          output: 'trivy-results.sarif'   # 👈 file in repo workspace
+
+      - name: Upload Trivy SARIF to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-results.sarif

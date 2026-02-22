@@ -1,8 +1,8 @@
 FROM docker.io/bitnami/prometheus
 
-USER nonroot
+RUN apt-get update && apt-get upgrade -y
 
-RUN sudo apt-get update && apt-get upgrade 
+USER nonroot
 
 COPY prometheus.yaml /etc/prometheus/prometheus.yml
 

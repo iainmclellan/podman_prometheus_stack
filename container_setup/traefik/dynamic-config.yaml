@@ -1,0 +1,60 @@
+# Dynamic configuration
+http:
+  # Middleware (Optional)
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+  # Routers
+  routers:
+    prometheus-router:
+      entryPoints:
+        - http
+      rule: "Host(`prometheus.example.com`)"
+      service: prometheus-service
+
+    alertmanager-router:
+      entryPoints:
+        - http
+      rule: "Host(`alertmanager.example.com`)"
+      service: alertmanager-service
+
+    grafana-router:
+      entryPoints:
+        - http
+      rule: "Host(`grafana.example.com`)"
+      service: grafana-service
+
+    kuma-uptime-router:
+      entryPoints:
+        - http
+      rule: "Host(`kuma-uptime.example.com`)"
+      service: kuma-uptime-service
+
+  # Services
+  services:
+    prometheus-service:
+      loadBalancer:
+        passHostHeader: true
+        servers:
+          - url: "http://prometheus:9090"
+
+    alertmanager-service:
+      loadBalancer:
+        passHostHeader: true
+        servers:
+          - url: "http://alertmanager:9093"
+
+    grafana-service:
+      loadBalancer:
+        passHostHeader: true
+        servers:
+          - url: "http://grafana:3000"
+
+    kuma-uptime-service:
+      loadBalancer:
+        passHostHeader: true
+        servers:
+          - url: "http://kuma-uptime:3001"

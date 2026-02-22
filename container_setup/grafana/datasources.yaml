@@ -4,7 +4,7 @@ datasources:
   - name: MyPrometheusDataSource
     type: prometheus
     access: proxy
-    url: http://prometheus-server:9090
+    url: http://prometheus:9090
     jsonData:
       timeInterval: "5s"
     secureJsonData:

@@ -19,7 +19,7 @@ jobs:
 
       - name: Build container image
         run: |
-          docker build -t local-image:latest .
+          docker build -f container_setup/grafana/Dockerfile -t local-image:latest .
 
       - name: Run Trivy (image + config) and output SARIF
         uses: aquasecurity/trivy-action@0.33.1

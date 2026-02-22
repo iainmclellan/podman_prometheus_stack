@@ -1,8 +1,8 @@
 FROM docker.io/grafana/grafana
 
-USER nonroot
+RUN apt-get update && apt-get upgrade -y
 
-RUN sudo apt-get update && apt-get upgrade
+USER nonroot
 
 COPY grafana.ini /etc/grafana/grafana.ini
 COPY datasources.yaml /etc/grafana/provisioning/datasources/datasources.yaml

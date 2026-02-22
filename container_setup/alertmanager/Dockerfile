@@ -1,10 +1,10 @@
 FROM docker.io/bitnami/alertmanager
 
-USER nonroot
+RUN apt-get update && apt-get upgrade -y
 
-RUN sudo apt-get update && apt-get upgrade
+USER nonroot
 
 COPY alert_manager.yaml /etc/alertmanager/alertmanager.yml
 
 HEALTHCHECK  --interval=5m --timeout=3s \
-CMD wget --no-verbose --tries=1 --spider http://localhost:8080 || exit 1
+CMD wget --no-verbose --tries=1 --spider http://localhost:9093 || exit 1
